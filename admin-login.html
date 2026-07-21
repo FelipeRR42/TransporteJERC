@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ingreso de administradores</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="pagina-login pagina-login-admin">
+    <main class="contenedor-login">
+        <section class="tarjeta-login">
+            <header class="cabecera-login">
+                <h1>Ingreso de administradores</h1>
+                <p>Este acceso es independiente del ingreso de pasajeros.</p>
+            </header>
+
+            <form id="formulario-admin-login" novalidate>
+                <div class="campo-login">
+                    <label for="correo-admin">Correo electrónico</label>
+                    <input
+                        type="email"
+                        id="correo-admin"
+                        autocomplete="username"
+                        placeholder="admin@transporte.cl"
+                        required
+                    >
+                </div>
+
+                <div class="campo-login">
+                    <label for="contrasena-admin">Contraseña</label>
+                    <input
+                        type="password"
+                        id="contrasena-admin"
+                        autocomplete="current-password"
+                        placeholder="Ingresa la contraseña"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="boton principal boton-ancho">
+                    Ingresar al panel
+                </button>
+
+                <p id="mensaje-admin-login" class="mensaje" aria-live="polite"></p>
+            </form>
+
+            <div class="credenciales-prueba">
+                <h2>Administrador de prueba</h2>
+                <p><strong>Correo:</strong> admin@transporte.cl</p>
+                <p><strong>Contraseña:</strong> admin123</p>
+            </div>
+
+            <footer class="pie-login">
+                <a href="login.html">Volver al ingreso de pasajeros</a>
+            </footer>
+        </section>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/admin-login.js"></script>
+</body>
+</html>

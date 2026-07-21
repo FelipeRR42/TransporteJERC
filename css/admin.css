@@ -1,0 +1,430 @@
+/* =========================================================
+   PÁGINA DE ADMINISTRACIÓN
+   ========================================================= */
+
+.contenedor-admin {
+    width: min(1250px, calc(100% - 32px));
+}
+
+.aviso-admin {
+    color: var(--blanco);
+    background: var(--terracota);
+    border: 0;
+    border-left: 7px solid var(--naranja);
+}
+
+.formulario-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+.cabecera-listado {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.cabecera-listado h2 {
+    margin-bottom: 4px;
+}
+
+.cabecera-listado p {
+    margin-top: 0;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+}
+
+.tabla-conciertos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-conciertos th,
+.tabla-conciertos td {
+    padding: 11px;
+    border-bottom: 1px solid var(--borde);
+    text-align: left;
+    vertical-align: top;
+}
+
+.tabla-conciertos tbody tr:nth-child(even) {
+    background: #FBF0E9;
+}
+
+.tabla-conciertos tbody tr:hover {
+    background: #F8DDCC;
+}
+
+.tabla-conciertos th {
+    color: var(--blanco);
+    background: var(--vino);
+    white-space: nowrap;
+}
+
+.tabla-reservas td {
+    min-width: 125px;
+}
+
+.contacto-reserva span {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.etiqueta-tipo {
+    display: inline-block;
+    padding: 4px 7px;
+    color: var(--blanco);
+    background: var(--terracota);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.acciones-tabla {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.boton-tabla {
+    padding: 7px 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.boton-tabla:hover {
+    transform: translateY(-1px);
+}
+
+.boton-ver {
+    color: var(--noche);
+    background: var(--naranja);
+    border-color: var(--naranja-oscuro);
+}
+
+.boton-ver:hover {
+    color: var(--blanco);
+    background: var(--naranja-oscuro);
+}
+
+.boton-editar {
+    color: var(--blanco);
+    background: var(--cafe);
+    border-color: var(--vino);
+}
+
+.boton-editar:hover {
+    background: var(--vino);
+}
+
+.boton-eliminar {
+    color: var(--blanco);
+    background: var(--terracota);
+    border-color: var(--vino);
+}
+
+.boton-eliminar:hover {
+    background: var(--vino);
+}
+
+.estado-vacio {
+    margin-bottom: 0;
+    padding: 24px;
+    color: var(--cafe);
+    text-align: center;
+    background: #FFF0E6;
+    border: 1px dashed var(--naranja-oscuro);
+    border-radius: 6px;
+}
+
+
+/* =========================================================
+   MODAL DE ASIENTOS
+   ========================================================= */
+
+body.modal-abierto {
+    overflow: hidden;
+}
+
+.modal-asientos {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+
+.modal-fondo {
+    position: absolute;
+    inset: 0;
+    background: rgba(9, 8, 31, 0.88);
+}
+
+.modal-contenido {
+    position: relative;
+    z-index: 1;
+    width: min(1200px, 100%);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 24px;
+    background: var(--blanco);
+    border: 3px solid var(--naranja);
+    border-radius: 12px;
+    box-shadow: 0 24px 70px rgba(9, 8, 31, 0.55);
+}
+
+.modal-cabecera {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin: -24px -24px 18px;
+    padding: 20px 24px;
+    color: var(--blanco);
+    background: var(--vino);
+    border-bottom: 5px solid var(--naranja);
+    border-radius: 9px 9px 0 0;
+}
+
+.modal-cabecera h2 {
+    margin: 0 0 5px;
+    color: var(--blanco);
+}
+
+.modal-cabecera p {
+    margin: 0;
+    color: var(--blanco);
+}
+
+.boton-cerrar-modal {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    color: var(--blanco);
+    background: var(--noche);
+    border: 1px solid var(--naranja-oscuro);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.boton-cerrar-modal:hover {
+    background: var(--cafe);
+}
+
+.resumen-ocupacion {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.resumen-ocupacion article {
+    padding: 14px;
+    background: #FFF0E6;
+    border: 1px solid var(--naranja-oscuro);
+    border-top: 5px solid var(--naranja);
+    border-radius: 7px;
+}
+
+.resumen-ocupacion article:nth-child(2) {
+    border-top-color: var(--naranja-oscuro);
+}
+
+.resumen-ocupacion article:nth-child(3) {
+    border-top-color: var(--terracota);
+}
+
+.resumen-ocupacion article:nth-child(4) {
+    border-top-color: var(--vino);
+}
+
+.resumen-ocupacion span,
+.resumen-ocupacion strong {
+    display: block;
+}
+
+.resumen-ocupacion span {
+    margin-bottom: 5px;
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+}
+
+.resumen-ocupacion strong {
+    color: var(--vino);
+    font-size: 1.55rem;
+}
+
+.acciones-exportacion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.leyenda-admin {
+    padding: 12px;
+    background: #FFF0E6;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+}
+
+.muestra-asiento.reservado-admin {
+    background: var(--naranja-oscuro);
+}
+
+.detalle-dos-columnas {
+    display: grid;
+    grid-template-columns: minmax(340px, 0.85fr) minmax(500px, 1.4fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.detalle-dos-columnas h3 {
+    margin-top: 0;
+    color: var(--vino);
+}
+
+.furgon-admin {
+    width: 100%;
+    max-width: 460px;
+}
+
+.mapa-asientos-admin .asiento-admin {
+    min-height: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 6px;
+    text-align: center;
+    border: 2px solid var(--vino);
+    border-radius: 9px 9px 4px 4px;
+    box-shadow: 0 3px 0 rgba(56, 33, 36, 0.15);
+}
+
+.asiento-admin strong {
+    font-size: 0.95rem;
+}
+
+.asiento-admin small {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.7rem;
+}
+
+.asiento-admin.disponible-admin {
+    color: var(--noche);
+    background: var(--blanco);
+}
+
+.asiento-admin.con-pasajero {
+    color: var(--noche);
+    background: var(--naranja);
+    border-color: var(--terracota);
+}
+
+.asiento-admin.sin-datos {
+    color: var(--blanco);
+    background: var(--vino);
+    border-color: var(--noche);
+}
+
+.tabla-detalle-contenedor {
+    max-height: 545px;
+    overflow: auto;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+}
+
+.tabla-detalle-asientos th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.estado-disponible {
+    color: var(--cafe);
+    font-weight: bold;
+}
+
+.estado-reservado {
+    color: var(--naranja-oscuro);
+    font-weight: bold;
+}
+
+.estado-sin-datos {
+    color: var(--vino);
+    font-weight: bold;
+}
+
+@media (max-width: 950px) {
+    .detalle-dos-columnas {
+        grid-template-columns: 1fr;
+    }
+
+    .furgon-admin {
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .contenedor-admin {
+        width: min(100% - 20px, 1250px);
+    }
+
+    .formulario-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-completo {
+        grid-column: auto;
+    }
+
+    .cabecera-listado {
+        flex-direction: column;
+    }
+
+    .modal-asientos {
+        padding: 8px;
+    }
+
+    .modal-contenido {
+        max-height: calc(100vh - 16px);
+        padding: 16px;
+    }
+
+    .modal-cabecera {
+        margin: -16px -16px 16px;
+        padding: 16px;
+    }
+
+    .resumen-ocupacion {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .acciones-exportacion {
+        flex-direction: column;
+    }
+
+    .acciones-exportacion .boton {
+        width: 100%;
+    }
+}

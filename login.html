@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ingreso de pasajeros</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="pagina-login">
+    <main class="contenedor-login">
+        <section class="tarjeta-login">
+            <header class="cabecera-login">
+                <h1>Ingreso de pasajeros</h1>
+                <p>Ingresa con una cuenta de prueba o continúa como invitado.</p>
+            </header>
+
+            <form id="formulario-login" novalidate>
+                <div class="campo-login">
+                    <label for="correo">Correo electrónico</label>
+                    <input
+                        type="email"
+                        id="correo"
+                        autocomplete="email"
+                        placeholder="usuario@correo.cl"
+                        required
+                    >
+                </div>
+
+                <div class="campo-login">
+                    <label for="contrasena">Contraseña</label>
+                    <input
+                        type="password"
+                        id="contrasena"
+                        autocomplete="current-password"
+                        placeholder="Ingresa tu contraseña"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="boton principal boton-ancho">
+                    Ingresar como pasajero
+                </button>
+
+                <p id="mensaje-login" class="mensaje" aria-live="polite"></p>
+            </form>
+
+            <div class="separador-login">
+                <span>o</span>
+            </div>
+
+            <button id="boton-invitado" type="button" class="boton secundario boton-ancho">
+                Continuar como invitado
+            </button>
+
+            <p class="texto-ayuda">
+                El invitado deberá ingresar sus datos al momento de realizar una reserva.
+                No se creará una cuenta permanente.
+            </p>
+
+            <div class="credenciales-prueba">
+                <h2>Usuarios de prueba</h2>
+
+                <div class="tabla-login-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Contraseña</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Camila Soto</td>
+                                <td>camila.soto@correo.cl</td>
+                                <td>camila123</td>
+                            </tr>
+                            <tr>
+                                <td>Diego Morales</td>
+                                <td>diego.morales@correo.cl</td>
+                                <td>diego123</td>
+                            </tr>
+                            <tr>
+                                <td>Valentina Rojas</td>
+                                <td>valentina.rojas@correo.cl</td>
+                                <td>valentina123</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <footer class="pie-login">
+                <a href="admin-login.html">Ir al ingreso de administradores</a>
+            </footer>
+        </section>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

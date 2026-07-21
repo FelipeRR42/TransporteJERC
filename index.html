@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reserva de transporte</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="encabezado">
+        <h1>Reserva de transporte</h1>
+        <p>Selecciona un concierto y luego elige tus asientos.</p>
+
+        <div class="barra-sesion">
+            <span id="usuario-sesion">Cargando sesión...</span>
+
+            <button id="boton-cerrar-sesion" type="button" class="boton secundario">
+                Cerrar sesión
+            </button>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <section class="tarjeta">
+            <h2>1. Seleccionar concierto</h2>
+
+            <label for="concierto">Concierto disponible:</label>
+
+            <select id="concierto">
+                <option value="">-- Selecciona un concierto --</option>
+            </select>
+
+            <p id="estado-conciertos" class="texto-ayuda"></p>
+
+            <div id="informacion-concierto" class="informacion-concierto oculto">
+                <p><strong>Concierto:</strong> <span id="detalle-nombre"></span></p>
+                <p><strong>Fecha:</strong> <span id="detalle-fecha"></span></p>
+                <p><strong>Hora de salida:</strong> <span id="detalle-hora"></span></p>
+                <p><strong>Lugar del concierto:</strong> <span id="detalle-lugar"></span></p>
+                <p><strong>Punto de salida:</strong> <span id="detalle-punto-salida"></span></p>
+            </div>
+        </section>
+
+        <section id="seccion-datos-pasajero" class="tarjeta oculto">
+            <h2>2. Datos del pasajero</h2>
+
+            <div id="datos-usuario-registrado" class="datos-cuenta oculto">
+                <p>
+                    Se utilizarán los datos de la cuenta que inició sesión.
+                </p>
+
+                <p><strong>Nombre:</strong> <span id="cuenta-nombre"></span></p>
+                <p><strong>Correo:</strong> <span id="cuenta-correo"></span></p>
+                <p><strong>Teléfono:</strong> <span id="cuenta-telefono"></span></p>
+            </div>
+
+            <form id="formulario-invitado" class="formulario-invitado oculto" novalidate>
+                <p class="texto-ayuda">
+                    Estos datos se asociarán a esta reserva, pero no crearán una cuenta.
+                </p>
+
+                <div class="formulario-datos-grid">
+                    <div class="campo campo-completo">
+                        <label for="invitado-nombre">Nombre completo</label>
+                        <input
+                            type="text"
+                            id="invitado-nombre"
+                            maxlength="100"
+                            autocomplete="name"
+                            placeholder="Ejemplo: Felipe Rojas"
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="invitado-correo">Correo electrónico</label>
+                        <input
+                            type="email"
+                            id="invitado-correo"
+                            maxlength="120"
+                            autocomplete="email"
+                            placeholder="correo@ejemplo.cl"
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="invitado-telefono">Teléfono</label>
+                        <input
+                            type="tel"
+                            id="invitado-telefono"
+                            maxlength="25"
+                            autocomplete="tel"
+                            placeholder="+56 9 1234 5678"
+                        >
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section id="seccion-asientos" class="tarjeta oculto">
+            <h2>3. Seleccionar asientos</h2>
+
+            <div class="leyenda">
+                <div>
+                    <span class="muestra-asiento disponible"></span>
+                    Disponible
+                </div>
+
+                <div>
+                    <span class="muestra-asiento seleccionado"></span>
+                    Seleccionado
+                </div>
+
+                <div>
+                    <span class="muestra-asiento ocupado"></span>
+                    Ocupado
+                </div>
+            </div>
+
+            <div class="furgon">
+                <div class="parte-delantera">
+                    <div class="conductor">Conductor</div>
+                    <div class="direccion">Frente del furgón</div>
+                </div>
+
+                <div id="mapa-asientos" class="mapa-asientos"></div>
+            </div>
+        </section>
+
+        <section id="seccion-resumen" class="tarjeta oculto">
+            <h2>4. Confirmar selección</h2>
+
+            <p>
+                <strong>Asientos seleccionados:</strong>
+                <span id="lista-asientos">Ninguno</span>
+            </p>
+
+            <p>
+                <strong>Cantidad:</strong>
+                <span id="cantidad-asientos">0</span>
+            </p>
+
+            <div class="acciones">
+                <button id="boton-limpiar" type="button" class="boton secundario">
+                    Limpiar selección
+                </button>
+
+                <button id="boton-reservar" type="button" class="boton principal" disabled>
+                    Confirmar reserva
+                </button>
+            </div>
+
+            <p id="mensaje" class="mensaje" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

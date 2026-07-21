@@ -1,0 +1,460 @@
+/* =========================================================
+   PALETA DEL PROYECTO
+   Se utilizan colores sólidos, sin degradados.
+   ========================================================= */
+
+:root {
+    --naranja: #F38338;
+    --naranja-oscuro: #C46A33;
+    --terracota: #95522E;
+    --cafe: #673929;
+    --vino: #382124;
+    --noche: #09081F;
+
+    --blanco: #FFFFFF;
+    --fondo-claro: #F8F3EF;
+    --texto-suave: #6D5B58;
+    --borde: #CDB8AC;
+}
+
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: light;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--noche);
+    background: var(--fondo-claro);
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button,
+a,
+select,
+input {
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.15s ease,
+        background-color 0.15s ease;
+}
+
+
+/* =========================================================
+   ENCABEZADO Y SESIÓN
+   ========================================================= */
+
+.encabezado {
+    padding: 26px 16px;
+    color: var(--blanco);
+    text-align: center;
+    background: var(--vino);
+    border-bottom: 5px solid var(--naranja);
+    box-shadow: 0 7px 18px rgba(9, 8, 31, 0.24);
+}
+
+.encabezado h1 {
+    margin: 0 0 8px;
+}
+
+.encabezado > p {
+    margin: 0;
+}
+
+.barra-sesion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.barra-sesion span {
+    padding: 8px 12px;
+    color: var(--blanco);
+    background: var(--noche);
+    border: 1px solid var(--naranja-oscuro);
+    border-radius: 999px;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   CONTENIDO PRINCIPAL
+   ========================================================= */
+
+.contenedor {
+    width: min(950px, calc(100% - 32px));
+    margin: 24px auto;
+}
+
+.tarjeta {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-top: 4px solid var(--naranja-oscuro);
+    border-radius: 9px;
+    box-shadow: 0 9px 24px rgba(56, 33, 36, 0.12);
+}
+
+.tarjeta h2 {
+    margin-top: 0;
+    color: var(--vino);
+}
+
+.oculto {
+    display: none !important;
+}
+
+.texto-ayuda {
+    color: var(--texto-suave);
+    font-size: 0.92rem;
+}
+
+code {
+    padding: 2px 5px;
+    color: var(--blanco);
+    background: var(--vino);
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   FORMULARIOS Y SELECTOR DE CONCIERTO
+   ========================================================= */
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--vino);
+    font-weight: bold;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 10px;
+    color: var(--noche);
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+}
+
+select:focus,
+input:focus {
+    outline: 3px solid rgba(243, 131, 56, 0.22);
+    border-color: var(--naranja);
+}
+
+.informacion-concierto {
+    margin-top: 16px;
+    padding: 14px;
+    color: var(--noche);
+    background: #FFF0E6;
+    border: 1px solid var(--naranja);
+    border-left: 6px solid var(--naranja);
+    border-radius: 6px;
+}
+
+.informacion-concierto p,
+.datos-cuenta p {
+    margin: 5px 0;
+}
+
+.datos-cuenta {
+    padding: 14px;
+    color: var(--blanco);
+    background: var(--terracota);
+    border-left: 6px solid var(--noche);
+    border-radius: 6px;
+}
+
+.formulario-datos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   LEYENDA
+   ========================================================= */
+
+.leyenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.leyenda div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.muestra-asiento {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    border: 2px solid var(--vino);
+    border-radius: 4px;
+}
+
+.muestra-asiento.disponible {
+    background: var(--blanco);
+}
+
+.muestra-asiento.seleccionado {
+    background: var(--naranja);
+}
+
+.muestra-asiento.ocupado {
+    background: var(--vino);
+}
+
+
+/* =========================================================
+   REPRESENTACIÓN DEL FURGÓN
+   Distribución:
+   AAAB / AABB / AABA / AABA / AAAA
+   ========================================================= */
+
+.furgon {
+    width: min(100%, 460px);
+    margin: 0 auto;
+    padding: 20px;
+    background: #F2E6DF;
+    border: 3px solid var(--noche);
+    border-radius: 30px 30px 12px 12px;
+    box-shadow: inset 0 0 0 3px var(--naranja-oscuro);
+}
+
+.parte-delantera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 15px;
+    border-bottom: 2px dashed var(--terracota);
+}
+
+.conductor {
+    padding: 12px;
+    color: var(--blanco);
+    background: var(--cafe);
+    border: 2px solid var(--noche);
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.direccion {
+    color: var(--cafe);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.mapa-asientos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(55px, 1fr));
+    gap: 14px 10px;
+    align-items: stretch;
+}
+
+.asiento {
+    min-height: 54px;
+    color: var(--noche);
+    background: var(--blanco);
+    border: 2px solid var(--vino);
+    border-radius: 9px 9px 4px 4px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 3px 0 rgba(56, 33, 36, 0.18);
+}
+
+.asiento:hover:not(:disabled) {
+    color: var(--blanco);
+    background: var(--naranja-oscuro);
+    border-color: var(--cafe);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(103, 57, 41, 0.24);
+}
+
+.asiento.seleccionado {
+    color: var(--noche);
+    background: var(--naranja);
+    border-color: var(--terracota);
+}
+
+.asiento.ocupado {
+    color: var(--blanco);
+    background: var(--vino);
+    border-color: var(--noche);
+    cursor: not-allowed;
+}
+
+.asiento:focus-visible {
+    outline: 3px solid var(--naranja);
+    outline-offset: 2px;
+}
+
+.espacio-vacio {
+    min-height: 54px;
+    background: var(--noche);
+    border: 1px solid var(--noche);
+    border-radius: 8px;
+    opacity: 0.1;
+}
+
+
+/* =========================================================
+   RESUMEN Y BOTONES
+   ========================================================= */
+
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.boton {
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.boton:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 11px rgba(56, 33, 36, 0.2);
+}
+
+.boton:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.boton.principal {
+    color: var(--noche);
+    background: var(--naranja);
+    border-color: var(--naranja-oscuro);
+}
+
+.boton.principal:hover:not(:disabled) {
+    color: var(--blanco);
+    background: var(--naranja-oscuro);
+}
+
+.boton.secundario {
+    color: var(--blanco);
+    background: var(--cafe);
+    border-color: var(--vino);
+}
+
+.boton.secundario:hover:not(:disabled) {
+    background: var(--vino);
+}
+
+.boton.peligro {
+    color: var(--blanco);
+    background: var(--terracota);
+    border-color: var(--vino);
+}
+
+.boton.peligro:hover:not(:disabled) {
+    background: var(--vino);
+}
+
+.mensaje {
+    min-height: 24px;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.mensaje.exito {
+    color: var(--terracota);
+}
+
+.mensaje.error {
+    color: var(--vino);
+}
+
+
+/* =========================================================
+   ADAPTACIÓN PARA PANTALLAS PEQUEÑAS
+   ========================================================= */
+
+@media (max-width: 550px) {
+    .contenedor {
+        width: min(100% - 20px, 950px);
+        margin-top: 10px;
+    }
+
+    .tarjeta {
+        padding: 15px;
+    }
+
+    .furgon {
+        padding: 14px 10px;
+    }
+
+    .mapa-asientos {
+        grid-template-columns: repeat(4, minmax(42px, 1fr));
+        gap: 10px 6px;
+    }
+
+    .asiento,
+    .espacio-vacio {
+        min-height: 46px;
+    }
+
+    .asiento {
+        padding: 5px;
+    }
+
+    .parte-delantera {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .acciones {
+        flex-direction: column;
+    }
+
+    .boton {
+        width: 100%;
+    }
+
+    .formulario-datos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-completo {
+        grid-column: auto;
+    }
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administración de conciertos</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header class="encabezado">
+        <h1>Administración de conciertos</h1>
+        <p>Agrega fechas, revisa pasajeros y consulta la ocupación de cada furgón.</p>
+
+        <div class="barra-sesion">
+            <span id="administrador-sesion">Cargando sesión...</span>
+
+            <button id="boton-cerrar-sesion-admin" type="button" class="boton secundario">
+                Cerrar sesión
+            </button>
+        </div>
+    </header>
+
+    <main class="contenedor contenedor-admin">
+        <section class="tarjeta aviso-admin">
+            <strong>Modo de prueba:</strong>
+            el acceso, los conciertos y las reservas se almacenan en
+            <code>localStorage</code>. Esto todavía no reemplaza un servidor real.
+        </section>
+
+        <section class="tarjeta">
+            <h2 id="titulo-formulario">Agregar concierto</h2>
+
+            <form id="formulario-concierto" novalidate>
+                <input type="hidden" id="concierto-id">
+
+                <div class="formulario-grid">
+                    <div class="campo campo-completo">
+                        <label for="nombre">Nombre del concierto</label>
+                        <input
+                            type="text"
+                            id="nombre"
+                            maxlength="100"
+                            placeholder="Ejemplo: Concierto de Coldplay"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="hora">Hora de salida</label>
+                        <input type="time" id="hora" required>
+                    </div>
+
+                    <div class="campo campo-completo">
+                        <label for="lugar">Lugar del concierto</label>
+                        <input
+                            type="text"
+                            id="lugar"
+                            maxlength="120"
+                            placeholder="Ejemplo: Estadio Nacional"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo campo-completo">
+                        <label for="punto-salida">Punto de salida del furgón</label>
+                        <input
+                            type="text"
+                            id="punto-salida"
+                            maxlength="120"
+                            placeholder="Ejemplo: Plaza de Armas"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="acciones">
+                    <button id="boton-guardar" type="submit" class="boton principal">
+                        Agregar concierto
+                    </button>
+
+                    <button id="boton-cancelar" type="button" class="boton secundario oculto">
+                        Cancelar edición
+                    </button>
+                </div>
+
+                <p id="mensaje-admin" class="mensaje" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section class="tarjeta">
+            <div class="cabecera-listado">
+                <div>
+                    <h2>Conciertos registrados</h2>
+                    <p id="contador-conciertos" class="texto-ayuda"></p>
+                </div>
+
+                <button id="boton-restaurar" type="button" class="boton secundario">
+                    Restaurar ejemplos
+                </button>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table class="tabla-conciertos">
+                    <thead>
+                        <tr>
+                            <th>Concierto</th>
+                            <th>Fecha</th>
+                            <th>Salida</th>
+                            <th>Lugar</th>
+                            <th>Ocupados</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-conciertos"></tbody>
+                </table>
+            </div>
+
+            <p id="sin-conciertos" class="estado-vacio oculto">
+                No hay conciertos registrados. Usa el formulario para agregar el primero.
+            </p>
+        </section>
+
+        <section class="tarjeta">
+            <div class="cabecera-listado">
+                <div>
+                    <h2>Registros de pasajeros</h2>
+                    <p id="contador-reservas" class="texto-ayuda"></p>
+                </div>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table class="tabla-conciertos tabla-reservas">
+                    <thead>
+                        <tr>
+                            <th>Pasajero</th>
+                            <th>Tipo</th>
+                            <th>Contacto</th>
+                            <th>Concierto</th>
+                            <th>Asientos asignados</th>
+                            <th>Fecha de reserva</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-reservas"></tbody>
+                </table>
+            </div>
+
+            <p id="sin-reservas" class="estado-vacio oculto">
+                Todavía no se han realizado reservas.
+            </p>
+        </section>
+    </main>
+
+    <!-- Ventana de detalle de un concierto -->
+    <div
+        id="modal-asientos"
+        class="modal-asientos oculto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-modal-asientos"
+    >
+        <div class="modal-fondo" data-cerrar-modal></div>
+
+        <section class="modal-contenido">
+            <header class="modal-cabecera">
+                <div>
+                    <h2 id="titulo-modal-asientos">Detalle de asientos</h2>
+                    <p id="subtitulo-modal-asientos" class="texto-ayuda"></p>
+                </div>
+
+                <button
+                    id="boton-cerrar-modal"
+                    type="button"
+                    class="boton-cerrar-modal"
+                    aria-label="Cerrar detalle"
+                >
+                    ×
+                </button>
+            </header>
+
+            <div class="resumen-ocupacion">
+                <article>
+                    <span>Total</span>
+                    <strong id="resumen-total">0</strong>
+                </article>
+                <article>
+                    <span>Disponibles</span>
+                    <strong id="resumen-disponibles">0</strong>
+                </article>
+                <article>
+                    <span>Con pasajero</span>
+                    <strong id="resumen-con-pasajero">0</strong>
+                </article>
+                <article>
+                    <span>Sin datos</span>
+                    <strong id="resumen-sin-datos">0</strong>
+                </article>
+            </div>
+
+            <div class="acciones-exportacion">
+                <button id="boton-descargar-excel" type="button" class="boton principal">
+                    Descargar Excel (.xls)
+                </button>
+
+                <button id="boton-descargar-csv" type="button" class="boton secundario">
+                    Descargar CSV
+                </button>
+            </div>
+
+            <div class="leyenda leyenda-admin">
+                <div>
+                    <span class="muestra-asiento disponible"></span>
+                    Disponible
+                </div>
+                <div>
+                    <span class="muestra-asiento reservado-admin"></span>
+                    Reservado con pasajero
+                </div>
+                <div>
+                    <span class="muestra-asiento ocupado"></span>
+                    Ocupado sin datos
+                </div>
+            </div>
+
+            <div class="detalle-dos-columnas">
+                <div>
+                    <h3>Mapa del furgón</h3>
+
+                    <div class="furgon furgon-admin">
+                        <div class="parte-delantera">
+                            <div class="conductor">Conductor</div>
+                            <div class="direccion">Frente del furgón</div>
+                        </div>
+
+                        <div id="mapa-asientos-admin" class="mapa-asientos mapa-asientos-admin"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Asignación por asiento</h3>
+
+                    <div class="tabla-contenedor tabla-detalle-contenedor">
+                        <table class="tabla-conciertos tabla-detalle-asientos">
+                            <thead>
+                                <tr>
+                                    <th>Asiento</th>
+                                    <th>Estado</th>
+                                    <th>Pasajero</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-detalle-asientos"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

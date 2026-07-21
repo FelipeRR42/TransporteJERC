@@ -1,0 +1,146 @@
+/* =========================================================
+   PÁGINAS DE INICIO DE SESIÓN
+   Colores sólidos, sin degradados.
+   ========================================================= */
+
+.pagina-login {
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    padding: 24px;
+    background: var(--naranja-oscuro);
+}
+
+.pagina-login-admin {
+    background: var(--cafe);
+}
+
+.contenedor-login {
+    width: min(100%, 720px);
+}
+
+.tarjeta-login {
+    padding: 28px;
+    background: var(--blanco);
+    border: 3px solid var(--vino);
+    border-radius: 12px;
+    box-shadow: 0 22px 55px rgba(9, 8, 31, 0.34);
+}
+
+.cabecera-login {
+    margin: -28px -28px 24px;
+    padding: 24px;
+    color: var(--blanco);
+    text-align: center;
+    background: var(--vino);
+    border-bottom: 5px solid var(--naranja);
+    border-radius: 9px 9px 0 0;
+}
+
+.pagina-login-admin .cabecera-login {
+    background: var(--noche);
+    border-bottom-color: var(--naranja-oscuro);
+}
+
+.cabecera-login h1 {
+    margin: 0 0 8px;
+}
+
+.cabecera-login p {
+    margin: 0;
+    color: var(--blanco);
+}
+
+.campo-login {
+    margin-bottom: 16px;
+}
+
+.boton-ancho {
+    width: 100%;
+}
+
+.separador-login {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0;
+    color: var(--terracota);
+}
+
+.separador-login::before,
+.separador-login::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--borde);
+}
+
+.credenciales-prueba {
+    margin-top: 24px;
+    padding: 16px;
+    background: #FFF0E6;
+    border: 1px dashed var(--naranja-oscuro);
+    border-left: 6px solid var(--naranja);
+    border-radius: 7px;
+}
+
+.credenciales-prueba h2 {
+    margin-top: 0;
+    color: var(--vino);
+    font-size: 1.05rem;
+}
+
+.tabla-login-contenedor {
+    overflow-x: auto;
+}
+
+.credenciales-prueba table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.credenciales-prueba th,
+.credenciales-prueba td {
+    padding: 9px;
+    border-bottom: 1px solid var(--borde);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.credenciales-prueba th {
+    color: var(--blanco);
+    background: var(--terracota);
+}
+
+.credenciales-prueba tbody tr:nth-child(even) {
+    background: #F8DDCC;
+}
+
+.pie-login {
+    margin-top: 22px;
+    text-align: center;
+}
+
+.pie-login a {
+    color: var(--terracota);
+    font-weight: bold;
+}
+
+.pie-login a:hover {
+    color: var(--naranja-oscuro);
+}
+
+@media (max-width: 600px) {
+    .pagina-login {
+        padding: 10px;
+    }
+
+    .tarjeta-login {
+        padding: 20px 15px;
+    }
+
+    .cabecera-login {
+        margin: -20px -15px 20px;
+        padding: 20px 15px;
+    }
+}
